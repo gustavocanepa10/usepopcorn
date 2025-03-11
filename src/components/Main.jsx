@@ -1,64 +1,17 @@
+import { ListBox } from "./ListBox"
+import { ListWatched } from "./ListWatched"
 
 
+export function Main({setIsOpen1,isOpen1,isOpen2,setIsOpen2, watched, avgImdbRating, avgRuntime, avgUserRating, movies}) {
+    return <main className="main">
 
-export function Main({setIsOpen2,isOpen2, watched, avgImdbRating, avgRuntime, avgUserRating}) {
-    return <main>
-    <div className="box">
-      <button
-        className="btn-toggle"
-        onClick={() => setIsOpen2((open) => !open)}
-      >
-        {isOpen2 ? "–" : "+"}
-      </button>
+      <ListBox isOpen1 = {isOpen1}  setIsOpen1 = {setIsOpen1}  movies={movies} avgImdbRating = {avgImdbRating} />
 
-      {isOpen2 && (
-        <>
-          <div className="summary">
-            <h2>Movies you watched</h2>
-            <div>
-              <p>
-                <span>#️⃣</span>
-                <span>{watched.length} movies</span>
-              </p>
-              <p>
-                <span>⭐️</span>
-                <span>{avgImdbRating.toFixed(1)}</span>
-              </p>
-              <p>
-                <span>🌟</span>
-                <span>{avgUserRating.toFixed(1)}</span>
-              </p>
-              <p>
-                <span>⏳</span>
-                <span>{avgRuntime.toFixed(1)} min</span>
-              </p>
-            </div>
-          </div>
+      <ListWatched watched = {watched} setIsOpen2 = {setIsOpen2} isOpen2 = {isOpen2}  avgImdbRating = {avgImdbRating} avgUserRating={avgUserRating} avgRuntime = {avgRuntime} movies = {movies} />
 
-          <ul className="list">
-            {watched.map((movie) => (
-              <li key={movie.imdbID}>
-                <img src={movie.Poster} alt={`${movie.Title} poster`} />
-                <h3>{movie.Title}</h3>
-                <div>
-                  <p>
-                    <span>⭐️</span>
-                    <span>{movie.imdbRating}</span>
-                  </p>
-                  <p>
-                    <span>🌟</span>
-                    <span>{movie.userRating}</span>
-                  </p>
-                  <p>
-                    <span>⏳</span>
-                    <span>{movie.runtime} min</span>
-                  </p>
-                </div>
-              </li>
-            ))}
-          </ul>
-        </>
-      )}
-    </div>
+      
+    
+
+    
   </main>
 }

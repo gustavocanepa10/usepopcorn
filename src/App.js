@@ -56,6 +56,7 @@ export default function App() {
   const [query, setQuery] = useState("");
   const [movies, setMovies] = useState(tempMovieData);
   const [watched, setWatched] = useState(tempWatchedData);
+  const [isOpen1, setIsOpen1] = useState(true);
   const [isOpen2, setIsOpen2] = useState(true);
 
   const avgImdbRating = average(watched.map((movie) => movie.imdbRating));
@@ -63,17 +64,24 @@ export default function App() {
   const avgRuntime = average(watched.map((movie) => movie.runtime));
 
   return (
-    <div>
+
+  
+    <>
       <NavBar query = {query} setQuery = {setQuery} movies = {movies} />
       <Main 
+      setMovies = {setMovies}
+      setWatched = {setWatched}
+      isOpen1 = {isOpen1}
+      setIsOpen1={setIsOpen1}
       isOpen2 = {isOpen2} 
       setIsOpen2 = {setIsOpen2} 
       watched = {watched} 
+      movies={movies}
       avgImdbRating = {avgImdbRating} 
       avgImdbuserRating = {avgUserRating} 
       avgRuntime = {avgRuntime}  />
 
       
-    </div>
-  );
+    </>
+  )
 }
