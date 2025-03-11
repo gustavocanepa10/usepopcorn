@@ -1,6 +1,6 @@
 import React from "react"
-import { Input } from "./Input"
-import { Logo } from "./Logo"
+import { Input } from "./UI/Input"
+import { Logo } from "./UI/Logo"
 import { NumResults } from "./NumResult"
 
 

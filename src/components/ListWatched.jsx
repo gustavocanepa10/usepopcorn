@@ -1,5 +1,5 @@
 import { Summary } from "./Summary"
-import { MovieListWatched } from "./MovieListWatched"
+import { MovieListWatched } from "./Movie/MovieListWatched"
 
 
 
