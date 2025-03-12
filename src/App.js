@@ -1,6 +1,15 @@
 import { useState } from "react";
-import { NavBar } from "./components/NavBar";
-import { Main } from "./components/Main";
+import { NavBar } from "./components/Navigation/NavBar";
+import { Main } from "./components/Navigation/Main";
+import { Logo } from "./components/UI/Logo";
+import { Input } from "./components/UI/Input"
+import { NumResults } from "./components/Stats/NumResult"
+import { ListBox } from "./components/Box/ListBox";
+import { ListWatched } from "./components/Box/ListWatched"
+import { MovieList } from "./components/Movie/MovieList"
+import { Summary } from "./components/Stats/Summary";
+import { MovieListWatched } from "./components/Movie/MovieListWatched";
+
 
 const tempMovieData = [
   {
@@ -63,23 +72,39 @@ export default function App() {
   const avgUserRating = average(watched.map((movie) => movie.userRating));
   const avgRuntime = average(watched.map((movie) => movie.runtime));
 
+  
+ 
+
   return (
+
+
 
   
     <>
-      <NavBar query = {query} setQuery = {setQuery} movies = {movies} />
+       <NavBar> 
+       <Logo/>
+       
+       <Input query = {query} setQuery = {setQuery}  />
+       
+       <NumResults  movies = {movies}/>
+        
+       </NavBar>
       <Main 
-      setMovies = {setMovies}
-      setWatched = {setWatched}
-      isOpen1 = {isOpen1}
-      setIsOpen1={setIsOpen1}
-      isOpen2 = {isOpen2} 
-      setIsOpen2 = {setIsOpen2} 
-      watched = {watched} 
-      movies={movies}
-      avgImdbRating = {avgImdbRating} 
-      avgImdbuserRating = {avgUserRating} 
-      avgRuntime = {avgRuntime}  />
+      
+      
+      >
+
+        <ListBox isOpen1 = {isOpen1} setIsOpen1 = {setIsOpen1}>
+          <MovieList movies={movies}/>
+        </ListBox>
+        <ListWatched isOpen2 = {isOpen2} setIsOpen2 = {setIsOpen2}>
+
+          <Summary watched = {watched} avgImdbRating = {avgImdbRating} avgRuntime = {avgRuntime} avgUserRating = {avgUserRating}   />
+          <MovieListWatched watched = {watched}  avgImdbRating = {avgImdbRating} />
+
+        </ListWatched>
+
+      </Main>
 
       
     </>
