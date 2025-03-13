@@ -4,8 +4,8 @@ import { Main } from "./components/Navigation/Main";
 import { Logo } from "./components/UI/Logo";
 import { Input } from "./components/UI/Input"
 import { NumResults } from "./components/Stats/NumResult"
-import { ListBox } from "./components/Box/ListBox";
-import { ListWatched } from "./components/Box/ListWatched"
+import { Box } from "./components/Box/Box";
+
 import { MovieList } from "./components/Movie/MovieList"
 import { Summary } from "./components/Stats/Summary";
 import { MovieListWatched } from "./components/Movie/MovieListWatched";
@@ -58,17 +58,15 @@ const tempWatchedData = [
   },
 ];
 
-const average = (arr) =>
+  const average = (arr) =>
   arr.length ? arr.reduce((acc, cur) => acc + cur, 0) / arr.length : 0;
 
-export default function App() {
+  export default function App() {
   const [query, setQuery] = useState("");
   const [movies, setMovies] = useState(tempMovieData);
   const [watched, setWatched] = useState(tempWatchedData);
-  const [isOpen1, setIsOpen1] = useState(true);
-  const [isOpen2, setIsOpen2] = useState(true);
-
-  const avgImdbRating = average(watched.map((movie) => movie.imdbRating));
+  
+const avgImdbRating = average(watched.map((movie) => movie.imdbRating));
   const avgUserRating = average(watched.map((movie) => movie.userRating));
   const avgRuntime = average(watched.map((movie) => movie.runtime));
 
@@ -76,11 +74,7 @@ export default function App() {
  
 
   return (
-
-
-
-  
-    <>
+  <>
        <NavBar> 
        <Logo/>
        
@@ -89,20 +83,18 @@ export default function App() {
        <NumResults  movies = {movies}/>
         
        </NavBar>
-      <Main 
-      
-      
-      >
+      <Main>
 
-        <ListBox isOpen1 = {isOpen1} setIsOpen1 = {setIsOpen1}>
+        <Box>
           <MovieList movies={movies}/>
-        </ListBox>
-        <ListWatched isOpen2 = {isOpen2} setIsOpen2 = {setIsOpen2}>
+        </Box>
+        
+        <Box>
 
           <Summary watched = {watched} avgImdbRating = {avgImdbRating} avgRuntime = {avgRuntime} avgUserRating = {avgUserRating}   />
           <MovieListWatched watched = {watched}  avgImdbRating = {avgImdbRating} />
 
-        </ListWatched>
+        </Box>
 
       </Main>
 
